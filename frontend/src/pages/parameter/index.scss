@@ -1,73 +1,95 @@
 .parameter-page {
   min-height: 100vh;
-  background-color: #F5F7FA;
+  background: var(--bg-color);
   display: flex;
   flex-direction: column;
+  animation: fadeIn var(--transition-base);
 }
 
-/* 搜索框 */
+/* 搜索框 - 现代设计 */
 .search-bar {
-  padding: 24px 32px;
-  background-color: #fff;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
 
   .search-input {
-    height: 80px;
-    padding: 0 32px;
-    background-color: #F5F7FA;
-    border-radius: 8px;
+    height: 88px;
+    padding: 0 var(--spacing-xl);
+    background: var(--bg-color);
+    border-radius: var(--radius-lg);
     font-size: 28px;
+    border: 2px solid transparent;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm);
+
+    &:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(26, 95, 122, 0.1);
+      background: var(--bg-secondary);
+    }
   }
 }
 
-/* Tab栏 */
+/* Tab栏 - 精致设计 */
 .tab-bar {
   display: flex;
-  background-color: #fff;
-  padding: 0 32px;
-  border-bottom: 1px solid #EEEEEE;
+  background: var(--bg-secondary);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
 
   .tab-item {
     flex: 1;
     text-align: center;
-    padding: 24px 0;
+    padding: var(--spacing-md) 0;
     position: relative;
+    transition: all var(--transition-base);
 
     .tab-text {
       font-size: 28px;
-      color: #333333;
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: all var(--transition-base);
     }
 
     &.active {
       .tab-text {
-        color: #1A5F7A;
-        font-weight: 500;
+        color: var(--primary-color);
+        font-weight: 600;
       }
 
       &::after {
         content: '';
         position: absolute;
-        bottom: 0;
+        bottom: -2px;
         left: 50%;
         transform: translateX(-50%);
-        width: 60px;
-        height: 4px;
-        background-color: #1A5F7A;
+        width: 40px;
+        height: 3px;
+        background: var(--primary-gradient);
         border-radius: 2px;
+        animation: slideInRight 0.3s ease-out;
+      }
+    }
+
+    &:active {
+      .tab-text {
+        transform: scale(0.95);
       }
     }
   }
 }
 
-/* 参数列表 */
+/* 参数列表 - 技术化设计 */
 .parameter-list {
   flex: 1;
-  padding: 24px 32px;
+  padding: var(--spacing-lg) var(--spacing-xl);
 
   .loading,
   .empty {
     text-align: center;
-    padding: 100px 0;
-    color: #999999;
+    padding: 120px 0;
+    color: var(--text-tertiary);
     font-size: 28px;
   }
 
@@ -75,34 +97,90 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 32px;
-    background-color: #fff;
-    border-radius: 8px;
-    margin-bottom: 24px;
+    padding: var(--spacing-xl);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+
+    /* 左侧装饰条 */
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--border-color);
+      transition: all var(--transition-base);
+    }
+
+    &:active {
+      transform: translateX(4px);
+      box-shadow: var(--shadow-md);
+
+      &::before {
+        background: var(--primary-gradient);
+        width: 4px;
+      }
+    }
 
     .param-name {
       font-size: 30px;
-      color: #333333;
-      font-weight: 500;
+      color: var(--text-primary);
+      font-weight: 600;
+      letter-spacing: -0.3px;
 
       &.core {
-        color: #FF7D00;
+        color: var(--accent-color);
+        position: relative;
+
+        /* 核心参数标记 */
+        &::after {
+          content: 'CORE';
+          position: absolute;
+          top: -8px;
+          right: -50px;
+          font-size: 20px;
+          color: var(--accent-color);
+          font-weight: 700;
+          letter-spacing: 1px;
+          opacity: 0.6;
+        }
       }
     }
 
     .param-info {
       display: flex;
       align-items: center;
+      gap: var(--spacing-md);
 
       .param-unit {
         font-size: 26px;
-        color: #999999;
-        margin-right: 16px;
+        color: var(--text-secondary);
+        font-family: var(--font-mono);
+        font-weight: 500;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        background: var(--bg-color);
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border-color);
       }
 
       .arrow {
-        font-size: 32px;
-        color: #1A5F7A;
+        font-size: 28px;
+        color: var(--primary-color);
+        font-weight: bold;
+        transition: transform var(--transition-fast);
+      }
+    }
+
+    &:hover {
+      .arrow {
+        transform: translateX(4px);
       }
     }
   }

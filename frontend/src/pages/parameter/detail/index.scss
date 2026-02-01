@@ -1,68 +1,153 @@
 .parameter-detail-page {
   min-height: 100vh;
-  background-color: #F5F7FA;
+  background: var(--bg-color);
   display: flex;
   flex-direction: column;
+  animation: fadeIn var(--transition-base);
 }
 
-/* 顶部标题 */
+/* 顶部标题 - 现代化设计 */
 .header {
   display: flex;
   align-items: center;
-  padding: 24px 32px;
-  background-color: #fff;
-  border-bottom: 1px solid #EEEEEE;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+
+  /* 顶部装饰条 */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+  }
 
   .back-btn {
     font-size: 40px;
-    color: #1A5F7A;
-    margin-right: 24px;
+    color: var(--primary-color);
+    margin-right: var(--spacing-lg);
+    transition: transform var(--transition-fast);
+
+    &:active {
+      transform: scale(0.9);
+    }
   }
 
   .title {
     font-size: 34px;
-    font-weight: 500;
-    color: #1A5F7A;
+    font-weight: 600;
+    color: var(--primary-color);
+    letter-spacing: -0.5px;
+    flex: 1;
+
+    /* 标题装饰 */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   }
 }
 
-/* 详情内容 */
+/* 详情内容 - 技术化卡片设计 */
 .detail-content {
   flex: 1;
-  padding: 24px 32px 150px;
+  padding: var(--spacing-lg) var(--spacing-xl) 150px;
 
   .detail-section {
-    background-color: #fff;
-    padding: 32px;
-    border-radius: 8px;
-    margin-bottom: 24px;
+    background: var(--bg-secondary);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-base);
+
+    /* 左侧装饰条 */
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--primary-color);
+      opacity: 0.3;
+      transition: all var(--transition-base);
+    }
+
+    &:hover::before {
+      opacity: 1;
+      width: 6px;
+    }
+
+    /* Staggered animation */
+    &:nth-child(1) { animation: fadeIn 0.3s ease-out; }
+    &:nth-child(2) { animation: fadeIn 0.4s ease-out; }
+    &:nth-child(3) { animation: fadeIn 0.5s ease-out; }
+    &:nth-child(4) { animation: fadeIn 0.6s ease-out; }
+    &:nth-child(5) { animation: fadeIn 0.7s ease-out; }
+    &:nth-child(6) { animation: fadeIn 0.8s ease-out; }
 
     .section-label {
-      display: block;
-      font-size: 26px;
-      color: #999999;
-      margin-bottom: 16px;
+      display: inline-block;
+      font-size: 24px;
+      color: var(--text-tertiary);
+      margin-bottom: var(--spacing-md);
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: var(--bg-color);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+
+      /* 技术标签效果 */
+      font-family: var(--font-mono);
+      font-size: 22px;
     }
 
     .section-value {
       display: block;
       font-size: 30px;
-      color: #333333;
-      line-height: 1.6;
+      color: var(--text-primary);
+      line-height: 1.8;
+      font-weight: 500;
+      padding-left: var(--spacing-sm);
+
+      /* 突出显示技术数据 */
+      font-family: var(--font-mono);
+      letter-spacing: -0.3px;
     }
   }
 }
 
-/* 底部按钮 */
+/* 底部按钮 - 现代化设计 */
 .footer-buttons {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   display: flex;
-  padding: 24px 32px;
-  background-color: #fff;
-  border-top: 1px solid #EEEEEE;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+
+  /* 添加渐变装饰 */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary-gradient);
+  }
 
   .btn {
     flex: 1;
@@ -70,29 +155,85 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: var(--radius-lg);
     font-size: 30px;
+    font-weight: 600;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+
+    /* 按钮点击效果 */
+    &:active {
+      transform: translateY(2px);
+      box-shadow: var(--shadow-sm);
+    }
 
     &.favorite-btn {
-      background-color: #fff;
-      border: 2px solid #1A5F7A;
-      color: #1A5F7A;
-      margin-right: 24px;
+      background: var(--bg-secondary);
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      box-shadow: var(--shadow-sm);
+
+      /* 添加微妙的悬停效果 */
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: var(--primary-color);
+        opacity: 0;
+        transition: opacity var(--transition-base);
+      }
+
+      &:hover::after {
+        opacity: 0.05;
+      }
 
       &.favorited {
-        background-color: #FF7D00;
-        border-color: #FF7D00;
+        background: var(--accent-color);
+        border-color: var(--accent-color);
         color: #fff;
+        box-shadow: var(--shadow-md);
+
+        /* 收藏状态的光效 */
+        &::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+        }
       }
     }
 
     &.back-btn-footer {
-      background-color: #1A5F7A;
+      background: var(--primary-gradient);
       color: #fff;
+      box-shadow: var(--shadow-primary);
+      border: none;
+
+      /* 主要按钮光效 */
+      &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity var(--transition-base);
+      }
+
+      &:active::before {
+        opacity: 1;
+      }
     }
   }
 }
 
+/* 加载和错误状态 */
 .loading,
 .error {
   flex: 1;
@@ -100,5 +241,7 @@
   align-items: center;
   justify-content: center;
   font-size: 30px;
-  color: #999999;
+  color: var(--text-tertiary);
+  padding: 120px 0;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

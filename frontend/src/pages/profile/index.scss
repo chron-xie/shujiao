@@ -1,37 +1,61 @@
 .profile-page {
   min-height: 100vh;
-  background-color: #F5F7FA;
-  padding-bottom: 32px;
+  background: var(--bg-color);
+  padding-bottom: var(--spacing-xl);
+  animation: fadeIn var(--transition-base);
 }
 
-/* 用户信息区 */
+/* 用户信息区 - 现代化设计 */
 .user-section {
-  background-color: #fff;
-  padding: 48px 32px;
-  margin-bottom: 24px;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  padding: var(--spacing-2xl) var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+
+  /* 顶部装饰条 */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+  }
 
   .user-info {
     display: flex;
     align-items: center;
+    animation: fadeIn 0.3s ease-out;
 
     .avatar {
       width: 120px;
       height: 120px;
       border-radius: 60px;
-      background-color: #F5F7FA;
+      background: var(--bg-color);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      margin-right: 24px;
+      margin-right: var(--spacing-lg);
+      box-shadow: var(--shadow-md);
+      border: 3px solid var(--bg-secondary);
+      transition: transform var(--transition-base);
+
+      &:active {
+        transform: scale(0.95);
+      }
 
       .avatar-image {
         width: 100%;
         height: 100%;
+        object-fit: cover;
       }
 
       .avatar-placeholder {
         font-size: 60px;
+        color: var(--text-tertiary);
       }
     }
 
@@ -40,33 +64,97 @@
 
       .nickname {
         font-size: 34px;
-        font-weight: 500;
-        color: #333333;
+        font-weight: 600;
+        color: var(--text-primary);
+        letter-spacing: -0.5px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
       }
     }
 
     .login-btn {
-      padding: 16px 32px;
-      background-color: #1A5F7A;
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: var(--primary-gradient);
       color: #fff;
-      border-radius: 8px;
+      border-radius: var(--radius-md);
       font-size: 26px;
+      font-weight: 600;
+      box-shadow: var(--shadow-primary);
+      transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
+
+      /* 光效 */
+      &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity var(--transition-base);
+      }
+
+      &:active {
+        transform: scale(0.95);
+        box-shadow: var(--shadow-sm);
+
+        &::before {
+          opacity: 1;
+        }
+      }
     }
   }
 }
 
-/* 区块样式 */
+/* 区块样式 - 精致卡片设计 */
 .section-block {
-  background-color: #fff;
-  padding: 32px;
-  margin-bottom: 24px;
+  background: var(--bg-secondary);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  position: relative;
+
+  /* Staggered animation */
+  &:nth-child(2) { animation: fadeIn 0.4s ease-out; }
+  &:nth-child(3) { animation: fadeIn 0.5s ease-out; }
+
+  /* 左侧装饰条 */
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--primary-color);
+    opacity: 0.3;
+  }
 
   .section-title {
     font-size: 32px;
-    font-weight: 500;
-    color: #333333;
-    margin-bottom: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
     display: block;
+    letter-spacing: -0.5px;
+    position: relative;
+    padding-left: var(--spacing-sm);
+
+    /* 标题装饰 */
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 20px;
+      background: var(--primary-gradient);
+      border-radius: 2px;
+    }
   }
 
   .menu-list {
@@ -74,11 +162,31 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 0;
-      border-bottom: 1px solid #F5F7FA;
+      padding: var(--spacing-lg) 0;
+      border-bottom: 1px solid var(--border-color);
+      transition: all var(--transition-base);
+      position: relative;
 
       &:last-child {
         border-bottom: none;
+      }
+
+      /* 悬停背景 */
+      &::after {
+        content: '';
+        position: absolute;
+        left: calc(var(--spacing-xl) * -1);
+        right: calc(var(--spacing-xl) * -1);
+        top: 0;
+        bottom: 0;
+        background: var(--bg-color);
+        opacity: 0;
+        transition: opacity var(--transition-fast);
+        z-index: -1;
+      }
+
+      &:active::after {
+        opacity: 1;
       }
 
       .menu-left {
@@ -88,39 +196,62 @@
 
         .menu-icon {
           font-size: 40px;
-          margin-right: 16px;
+          margin-right: var(--spacing-md);
+          color: var(--primary-color);
+          transition: transform var(--transition-fast);
         }
 
         .menu-text {
           font-size: 30px;
-          color: #333333;
+          color: var(--text-primary);
+          font-weight: 500;
+          letter-spacing: -0.3px;
         }
       }
 
       .menu-arrow {
         font-size: 32px;
-        color: #1A5F7A;
+        color: var(--primary-color);
+        transition: transform var(--transition-fast);
+      }
+
+      &:active {
+        .menu-icon {
+          transform: scale(1.1);
+        }
+
+        .menu-arrow {
+          transform: translateX(4px);
+        }
       }
     }
   }
 }
 
-/* 底部信息 */
+/* 底部信息 - 精致设计 */
 .footer-info {
-  padding: 32px;
+  padding: var(--spacing-xl);
   text-align: center;
+  animation: fadeIn 0.6s ease-out;
 
   .version {
     display: block;
     font-size: 24px;
-    color: #999999;
-    margin-bottom: 12px;
+    color: var(--text-tertiary);
+    margin-bottom: var(--spacing-sm);
+    font-family: var(--font-mono);
+    font-weight: 500;
   }
 
   .disclaimer {
     display: block;
     font-size: 24px;
-    color: #999999;
-    line-height: 1.6;
+    color: var(--text-tertiary);
+    line-height: 1.8;
+    padding: var(--spacing-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
   }
 }

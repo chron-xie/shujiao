@@ -1,99 +1,173 @@
 .template-page {
   min-height: 100vh;
-  background-color: #F5F7FA;
+  background: var(--bg-color);
   display: flex;
   flex-direction: column;
+  animation: fadeIn var(--transition-base);
 }
 
-/* 顶部导航 */
+/* 顶部导航 - 现代化设计 */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 32px;
-  background-color: #fff;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+
+  /* 顶部装饰条 */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+  }
 
   .title {
     font-size: 34px;
-    font-weight: 500;
-    color: #333333;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   }
 
   .filter-btn {
-    padding: 12px 24px;
-    border: 2px solid #1A5F7A;
-    border-radius: 8px;
-    color: #1A5F7A;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: 2px solid var(--primary-color);
+    border-radius: var(--radius-md);
+    color: var(--primary-color);
     font-size: 26px;
+    font-weight: 600;
+    transition: all var(--transition-base);
+    background: var(--bg-secondary);
+
+    &:active {
+      background: var(--primary-color);
+      color: #fff;
+      transform: scale(0.95);
+    }
   }
 }
 
-/* Tab栏 */
+/* Tab栏 - 精致设计 */
 .tab-bar {
   display: flex;
-  background-color: #fff;
-  padding: 0 32px;
-  border-bottom: 1px solid #EEEEEE;
+  background: var(--bg-secondary);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
 
   .tab-item {
     flex: 1;
     text-align: center;
-    padding: 24px 0;
+    padding: var(--spacing-md) 0;
     position: relative;
+    transition: all var(--transition-base);
 
     .tab-text {
       font-size: 26px;
-      color: #333333;
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: all var(--transition-base);
     }
 
     &.active {
       .tab-text {
-        color: #1A5F7A;
-        font-weight: 500;
+        color: var(--primary-color);
+        font-weight: 600;
       }
 
       &::after {
         content: '';
         position: absolute;
-        bottom: 0;
+        bottom: -2px;
         left: 50%;
         transform: translateX(-50%);
-        width: 60px;
-        height: 4px;
-        background-color: #1A5F7A;
+        width: 50px;
+        height: 3px;
+        background: var(--primary-gradient);
         border-radius: 2px;
+        animation: slideInRight 0.3s ease-out;
+      }
+    }
+
+    &:active {
+      .tab-text {
+        transform: scale(0.95);
       }
     }
   }
 }
 
-/* 模板列表 */
+/* 模板列表 - 现代卡片设计 */
 .template-list {
   flex: 1;
-  padding: 24px 32px;
+  padding: var(--spacing-lg) var(--spacing-xl);
 
   .loading,
   .empty {
     text-align: center;
-    padding: 100px 0;
-    color: #999999;
+    padding: 120px 0;
+    color: var(--text-tertiary);
     font-size: 28px;
   }
 
   .template-card {
-    background-color: #fff;
-    border-radius: 8px;
-    margin-bottom: 24px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-lg);
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-base);
+    position: relative;
+
+    /* Staggered animation */
+    &:nth-child(1) { animation: fadeIn 0.3s ease-out; }
+    &:nth-child(2) { animation: fadeIn 0.4s ease-out; }
+    &:nth-child(3) { animation: fadeIn 0.5s ease-out; }
+    &:nth-child(4) { animation: fadeIn 0.6s ease-out; }
+    &:nth-child(5) { animation: fadeIn 0.7s ease-out; }
+
+    &:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: var(--shadow-sm);
+    }
 
     .template-cover {
       width: 100%;
       height: 300px;
-      background-color: #F5F7FA;
+      background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-color) 100%);
+      position: relative;
+      overflow: hidden;
+
+      /* 装饰元素 */
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--primary-gradient);
+        opacity: 0.3;
+      }
 
       .cover-image {
         width: 100%;
         height: 100%;
+        object-fit: cover;
+        transition: transform var(--transition-slow);
       }
 
       .cover-placeholder {
@@ -103,47 +177,91 @@
         align-items: center;
         justify-content: center;
         font-size: 100px;
+        color: var(--text-tertiary);
+        opacity: 0.4;
       }
     }
 
+    &:hover .cover-image {
+      transform: scale(1.05);
+    }
+
     .template-info {
-      padding: 24px 32px;
+      padding: var(--spacing-lg) var(--spacing-xl);
+      border-bottom: 1px solid var(--border-color);
 
       .template-name {
         font-size: 30px;
-        font-weight: 500;
-        color: #333333;
-        margin-bottom: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-md);
         display: block;
+        letter-spacing: -0.3px;
+        line-height: 1.4;
       }
 
       .template-price {
         .price-tag {
           font-size: 28px;
-          font-weight: 500;
+          font-weight: 600;
+          font-family: var(--font-mono);
+          padding: var(--spacing-xs) var(--spacing-sm);
+          border-radius: var(--radius-sm);
+          display: inline-block;
 
           &.free {
-            color: #1A5F7A;
+            color: var(--success-color);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success-color);
           }
 
           &.paid {
-            color: #FF7D00;
+            color: var(--accent-color);
+            background: rgba(255, 125, 0, 0.1);
+            border: 1px solid var(--accent-color);
           }
         }
       }
     }
 
     .template-action {
-      padding: 0 32px 32px;
+      padding: var(--spacing-lg) var(--spacing-xl);
 
       .action-btn {
         display: block;
         text-align: center;
-        padding: 20px;
-        background-color: #1A5F7A;
+        padding: var(--spacing-lg);
+        background: var(--primary-gradient);
         color: #fff;
-        border-radius: 8px;
+        border-radius: var(--radius-lg);
         font-size: 28px;
+        font-weight: 600;
+        box-shadow: var(--shadow-primary);
+        transition: all var(--transition-base);
+        position: relative;
+        overflow: hidden;
+
+        /* 光效 */
+        &::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+          opacity: 0;
+          transition: opacity var(--transition-base);
+        }
+
+        &:active {
+          transform: translateY(2px);
+          box-shadow: var(--shadow-sm);
+
+          &::before {
+            opacity: 1;
+          }
+        }
       }
     }
   }
