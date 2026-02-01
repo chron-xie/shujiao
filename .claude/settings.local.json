@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(docx)",
+      "Bash(pandoc:*)",
+      "Bash(npx:*)",
+      "Bash(tree:*)",
+      "Skill(superpowers:brainstorming)",
+      "Bash(find:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

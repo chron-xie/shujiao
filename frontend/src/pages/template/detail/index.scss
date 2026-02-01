@@ -1,0 +1,151 @@
+.template-detail-page {
+  min-height: 100vh;
+  background-color: #F5F7FA;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 顶部导航 */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 24px 32px;
+  background-color: #fff;
+  border-bottom: 1px solid #EEEEEE;
+
+  .back-btn {
+    font-size: 40px;
+    color: #1A5F7A;
+    margin-right: 24px;
+  }
+
+  .title {
+    flex: 1;
+    font-size: 32px;
+    font-weight: 500;
+    color: #333333;
+  }
+
+  .price-tag {
+    .free {
+      font-size: 28px;
+      color: #1A5F7A;
+      font-weight: 500;
+    }
+
+    .paid {
+      font-size: 28px;
+      color: #FF7D00;
+      font-weight: 500;
+    }
+  }
+}
+
+/* 详情内容 */
+.detail-content {
+  flex: 1;
+  padding-bottom: 150px;
+
+  .cover-section {
+    width: 100%;
+    height: 400px;
+    background-color: #fff;
+    margin-bottom: 24px;
+
+    .cover-image {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .detail-section {
+    background-color: #fff;
+    padding: 32px;
+    border-radius: 8px;
+    margin: 0 32px 24px;
+
+    .section-label {
+      display: block;
+      font-size: 26px;
+      color: #999999;
+      margin-bottom: 16px;
+    }
+
+    .section-value {
+      display: block;
+      font-size: 30px;
+      color: #333333;
+      line-height: 1.6;
+    }
+
+    &.download-section {
+      .download-link {
+        display: flex;
+        align-items: center;
+        padding: 24px;
+        background-color: #F5F7FA;
+        border-radius: 8px;
+
+        .link-text {
+          flex: 1;
+          font-size: 26px;
+          color: #1A5F7A;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .copy-btn {
+          padding: 12px 24px;
+          background-color: #1A5F7A;
+          color: #fff;
+          border-radius: 4px;
+          font-size: 24px;
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+}
+
+/* 底部按钮 */
+.footer-buttons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 32px;
+  background-color: #fff;
+  border-top: 1px solid #EEEEEE;
+
+  .btn {
+    width: 100%;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 32px;
+    font-weight: 500;
+
+    &.download-btn-footer {
+      background-color: #1A5F7A;
+      color: #fff;
+    }
+
+    &.pay-btn {
+      background-color: #FF7D00;
+      color: #fff;
+    }
+  }
+}
+
+.loading,
+.error {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #999999;
+}

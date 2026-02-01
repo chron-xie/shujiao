@@ -1,0 +1,150 @@
+.template-page {
+  min-height: 100vh;
+  background-color: #F5F7FA;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 顶部导航 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  background-color: #fff;
+
+  .title {
+    font-size: 34px;
+    font-weight: 500;
+    color: #333333;
+  }
+
+  .filter-btn {
+    padding: 12px 24px;
+    border: 2px solid #1A5F7A;
+    border-radius: 8px;
+    color: #1A5F7A;
+    font-size: 26px;
+  }
+}
+
+/* Tab栏 */
+.tab-bar {
+  display: flex;
+  background-color: #fff;
+  padding: 0 32px;
+  border-bottom: 1px solid #EEEEEE;
+
+  .tab-item {
+    flex: 1;
+    text-align: center;
+    padding: 24px 0;
+    position: relative;
+
+    .tab-text {
+      font-size: 26px;
+      color: #333333;
+    }
+
+    &.active {
+      .tab-text {
+        color: #1A5F7A;
+        font-weight: 500;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background-color: #1A5F7A;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+/* 模板列表 */
+.template-list {
+  flex: 1;
+  padding: 24px 32px;
+
+  .loading,
+  .empty {
+    text-align: center;
+    padding: 100px 0;
+    color: #999999;
+    font-size: 28px;
+  }
+
+  .template-card {
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    overflow: hidden;
+
+    .template-cover {
+      width: 100%;
+      height: 300px;
+      background-color: #F5F7FA;
+
+      .cover-image {
+        width: 100%;
+        height: 100%;
+      }
+
+      .cover-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 100px;
+      }
+    }
+
+    .template-info {
+      padding: 24px 32px;
+
+      .template-name {
+        font-size: 30px;
+        font-weight: 500;
+        color: #333333;
+        margin-bottom: 16px;
+        display: block;
+      }
+
+      .template-price {
+        .price-tag {
+          font-size: 28px;
+          font-weight: 500;
+
+          &.free {
+            color: #1A5F7A;
+          }
+
+          &.paid {
+            color: #FF7D00;
+          }
+        }
+      }
+    }
+
+    .template-action {
+      padding: 0 32px 32px;
+
+      .action-btn {
+        display: block;
+        text-align: center;
+        padding: 20px;
+        background-color: #1A5F7A;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 28px;
+      }
+    }
+  }
+}

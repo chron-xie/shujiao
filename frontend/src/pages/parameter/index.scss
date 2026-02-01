@@ -1,0 +1,109 @@
+.parameter-page {
+  min-height: 100vh;
+  background-color: #F5F7FA;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 搜索框 */
+.search-bar {
+  padding: 24px 32px;
+  background-color: #fff;
+
+  .search-input {
+    height: 80px;
+    padding: 0 32px;
+    background-color: #F5F7FA;
+    border-radius: 8px;
+    font-size: 28px;
+  }
+}
+
+/* Tab栏 */
+.tab-bar {
+  display: flex;
+  background-color: #fff;
+  padding: 0 32px;
+  border-bottom: 1px solid #EEEEEE;
+
+  .tab-item {
+    flex: 1;
+    text-align: center;
+    padding: 24px 0;
+    position: relative;
+
+    .tab-text {
+      font-size: 28px;
+      color: #333333;
+    }
+
+    &.active {
+      .tab-text {
+        color: #1A5F7A;
+        font-weight: 500;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background-color: #1A5F7A;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+/* 参数列表 */
+.parameter-list {
+  flex: 1;
+  padding: 24px 32px;
+
+  .loading,
+  .empty {
+    text-align: center;
+    padding: 100px 0;
+    color: #999999;
+    font-size: 28px;
+  }
+
+  .parameter-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 24px;
+
+    .param-name {
+      font-size: 30px;
+      color: #333333;
+      font-weight: 500;
+
+      &.core {
+        color: #FF7D00;
+      }
+    }
+
+    .param-info {
+      display: flex;
+      align-items: center;
+
+      .param-unit {
+        font-size: 26px;
+        color: #999999;
+        margin-right: 16px;
+      }
+
+      .arrow {
+        font-size: 32px;
+        color: #1A5F7A;
+      }
+    }
+  }
+}

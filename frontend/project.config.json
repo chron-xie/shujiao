@@ -1,0 +1,15 @@
+{
+  "miniprogramRoot": "dist/",
+  "projectname": "shujiao-miniprogram",
+  "description": "绝缘材料参数工具",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "enhance": true,
+    "compileHotReLoad": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}

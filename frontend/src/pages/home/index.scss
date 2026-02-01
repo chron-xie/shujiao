@@ -1,0 +1,157 @@
+.home-page {
+  min-height: 100vh;
+  background-color: #F5F7FA;
+  padding-bottom: 32px;
+}
+
+/* 顶部Banner */
+.header-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px;
+  background-color: #F5F7FA;
+
+  .title {
+    font-size: 36px;
+    font-weight: 500;
+    color: #333333;
+  }
+
+  .search-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 8px;
+
+    .icon {
+      font-size: 40px;
+    }
+  }
+}
+
+/* 核心功能区 */
+.core-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 0 32px;
+  margin-bottom: 48px;
+
+  .feature-btn {
+    height: 200px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+
+    &.primary {
+      background-color: #1A5F7A;
+
+      .feature-text {
+        color: #fff;
+      }
+    }
+
+    .feature-text {
+      font-size: 28px;
+      font-weight: 500;
+      color: #333333;
+    }
+  }
+}
+
+/* 热门工具推荐区 */
+.hot-tools {
+  margin-bottom: 48px;
+
+  .section-title {
+    font-size: 32px;
+    font-weight: 500;
+    color: #333333;
+    padding: 0 32px;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .tool-list {
+    white-space: nowrap;
+    padding: 0 32px;
+
+    .tool-card {
+      display: inline-block;
+      padding: 24px 32px;
+      background-color: #fff;
+      border-radius: 8px;
+      margin-right: 24px;
+
+      .tool-name {
+        font-size: 28px;
+        color: #333333;
+      }
+    }
+  }
+}
+
+/* 最近更新区 */
+.recent-updates {
+  margin-bottom: 48px;
+
+  .section-title {
+    font-size: 32px;
+    font-weight: 500;
+    color: #333333;
+    padding: 0 32px;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .update-list {
+    padding: 0 32px;
+
+    .update-item {
+      display: flex;
+      padding: 24px 0;
+      border-bottom: 1px solid #EEEEEE;
+
+      .update-date {
+        font-size: 24px;
+        color: #999999;
+        margin-right: 24px;
+        min-width: 200px;
+      }
+
+      .update-content {
+        font-size: 28px;
+        color: #333333;
+      }
+    }
+  }
+}
+
+/* 底部说明栏 */
+.footer-note {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  background-color: #fff;
+  margin: 0 32px;
+  border-radius: 8px;
+
+  .note-text {
+    font-size: 24px;
+    color: #999999;
+    flex: 1;
+  }
+
+  .contact-btn {
+    font-size: 28px;
+    color: #1A5F7A;
+    font-weight: 500;
+  }
+}
