@@ -42,10 +42,16 @@ export default function Profile() {
   }
 
   function handleNavigate(page) {
-    Taro.showToast({ title: '功能开发中', icon: 'none' })
+    // 已实现的页面直接导航
+    if (page === '/pages/consultation/records/index') {
+      Taro.navigateTo({ url: page })
+    } else {
+      Taro.showToast({ title: '功能开发中', icon: 'none' })
+    }
   }
 
   const menuItems = [
+    { icon: '📋', text: '轻咨询记录', page: '/pages/consultation/records/index' },
     { icon: '❤️', text: '我的收藏', page: 'favorites' },
     { icon: '📋', text: '我的订单', page: 'orders' },
     { icon: '⬇️', text: '下载记录', page: 'downloads' },

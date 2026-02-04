@@ -58,6 +58,13 @@ export const consultationAPI = {
     request('/consultations/', { method: 'POST', data }),
 
   getMyList: () => request('/consultations/my'),
+
+  // Admin endpoints
+  getAdminList: (params) =>
+    request('/consultations/admin/list', { method: 'GET', data: params }),
+
+  batchUpdate: (data) =>
+    request('/consultations/admin/batch-update', { method: 'PUT', data }),
 }
 
 // 用户相关API

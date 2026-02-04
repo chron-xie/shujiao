@@ -6,7 +6,8 @@ export default {
     'pages/template/index',
     'pages/template/detail/index',
     'pages/profile/index',
-    'pages/consultation/index'
+    'pages/consultation/index',
+    'pages/consultation/records/index'
   ],
   window: {
     backgroundTextStyle: 'light',

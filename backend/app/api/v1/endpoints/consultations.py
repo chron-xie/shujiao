@@ -1,12 +1,13 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from typing import List
+from typing import List, Optional
 from app.db.session import get_db
 from app.models.consultation import Consultation
 from app.schemas.consultation import (
     ConsultationCreate,
     ConsultationUpdate,
+    ConsultationBatchUpdate,
     ConsultationInDB,
 )
 
@@ -83,3 +84,58 @@ async def update_consultation(
     await db.commit()
     await db.refresh(consultation)
     return consultation
+
+
+@router.get("/admin/list", response_model=List[ConsultationInDB])
+async def get_all_consultations_admin(
+    status: Optional[str] = Query(None, description="筛选状态: 待沟通/已完成/已取消"),
+    skip: int = Query(0, ge=0),
+    limit: int = Query(100, ge=1, le=1000),
+    db: AsyncSession = Depends(get_db),
+):
+    """管理员获取所有咨询列表（支持状态筛选）"""
+    query = select(Consultation).order_by(Consultation.created_at.desc())
+
+    if status:
+        query = query.where(Consultation.status == status)
+
+    query = query.offset(skip).limit(limit)
+    result = await db.execute(query)
+    consultations = result.scalars().all()
+    return consultations
+
+
+@router.put("/admin/batch-update")
+async def batch_update_consultations(
+    data: ConsultationBatchUpdate,
+    db: AsyncSession = Depends(get_db),
+):
+    """批量更新咨询状态（管理员）"""
+    # Validate status
+    valid_statuses = ["待沟通", "已完成", "已取消"]
+    if data.status not in valid_statuses:
+        raise HTTPException(
+            status_code=400,
+            detail=f"无效的状态值，必须是: {', '.join(valid_statuses)}"
+        )
+
+    # Fetch consultations
+    result = await db.execute(
+        select(Consultation).where(Consultation.id.in_(data.consultation_ids))
+    )
+    consultations = result.scalars().all()
+
+    if not consultations:
+        raise HTTPException(status_code=404, detail="未找到咨询记录")
+
+    # Update status
+    for consultation in consultations:
+        consultation.status = data.status
+
+    await db.commit()
+
+    return {
+        "success": True,
+        "updated_count": len(consultations),
+        "status": data.status
+    }
