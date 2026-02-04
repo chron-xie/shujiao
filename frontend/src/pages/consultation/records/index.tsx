@@ -4,36 +4,22 @@ import Taro from '@tarojs/taro'
 import { consultationAPI } from '../../../services/api'
 import './index.scss'
 
-interface Consultation {
-  id: number
-  name: string
-  company?: string
-  consult_type: string
-  problem: string
-  contact: string
-  status: string
-  user_id: number
-  order_id?: number
-  created_at: string
-  updated_at: string
-}
-
 export default function ConsultationRecords() {
-  const [consultations, setConsultations] = useState<Consultation[]>([])
-  const [selectedIds, setSelectedIds] = useState<number[]>([])
-  const [currentStatus, setCurrentStatus] = useState<string>('')
+  const [consultations, setConsultations] = useState([])
+  const [selectedIds, setSelectedIds] = useState([])
+  const [currentStatus, setCurrentStatus] = useState('')
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     loadConsultations(currentStatus)
   }, [currentStatus])
 
-  const loadConsultations = async (status: string) => {
+  const loadConsultations = async (status) => {
     setLoading(true)
     try {
       const params = status ? { status } : {}
       const data = await consultationAPI.getAdminList(params)
-      setConsultations(data as Consultation[])
+      setConsultations(data)
       setSelectedIds([]) // 清空选择
     } catch (error) {
       console.error('加载咨询记录失败:', error)
@@ -43,7 +29,7 @@ export default function ConsultationRecords() {
     }
   }
 
-  const handleCheckboxChange = (id: number) => {
+  const handleCheckboxChange = (id) => {
     setSelectedIds(prev => {
       if (prev.includes(id)) {
         return prev.filter(selectedId => selectedId !== id)
@@ -81,7 +67,7 @@ export default function ConsultationRecords() {
     })
   }
 
-  const handleBatchUpdate = async (newStatus: string) => {
+  const handleBatchUpdate = async (newStatus) => {
     try {
       Taro.showLoading({ title: '处理中...' })
       await consultationAPI.batchUpdate({
@@ -99,16 +85,16 @@ export default function ConsultationRecords() {
     }
   }
 
-  const handleTabChange = (status: string) => {
+  const handleTabChange = (status) => {
     setCurrentStatus(status)
   }
 
-  const truncateText = (text: string, maxLength: number = 50) => {
+  const truncateText = (text, maxLength = 50) => {
     if (text.length <= maxLength) return text
     return text.substring(0, maxLength) + '...'
   }
 
-  const formatDateTime = (dateStr: string) => {
+  const formatDateTime = (dateStr) => {
     const date = new Date(dateStr)
     const year = date.getFullYear()
     const month = String(date.getMonth() + 1).padStart(2, '0')
@@ -118,7 +104,7 @@ export default function ConsultationRecords() {
     return `${year}-${month}-${day} ${hours}:${minutes}`
   }
 
-  const getStatusBadgeClass = (status: string) => {
+  const getStatusBadgeClass = (status) => {
     switch (status) {
       case '待沟通':
         return 'status-badge pending'
