@@ -54,3 +54,6 @@ backend/.venv/
 *.tmp
 *.bak
 *.swp
+
+# Git worktrees
+.worktrees/
