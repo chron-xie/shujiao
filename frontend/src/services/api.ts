@@ -61,7 +61,7 @@ export const consultationAPI = {
 
   // Admin endpoints
   getAdminList: (params) =>
-    request('/consultations/admin/list', { method: 'GET', data: params }),
+    request('/consultations/admin/list', { data: params }),
 
   batchUpdate: (data) =>
     request('/consultations/admin/batch-update', { method: 'PUT', data }),
