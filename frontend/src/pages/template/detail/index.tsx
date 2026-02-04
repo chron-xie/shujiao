@@ -4,22 +4,22 @@ import Taro, { useRouter } from '@tarojs/taro'
 import { templateAPI } from '../../../services/api'
 import './index.scss'
 
-interface TemplateDetail {
-  id: number
-  template_category: string
-  template_name: string
-  description: string | null
-  cover_image_url: string | null
-  price: number
-  is_free: boolean
-  download_url: string | null
-  download_count: number
-}
+// interface TemplateDetail {
+//   id: number
+//   template_category: string
+//   template_name: string
+//   description: string | null
+//   cover_image_url: string | null
+//   price: number
+//   is_free: boolean
+//   download_url: string | null
+//   download_count: number
+// }
 
 export default function TemplateDetail() {
   const router = useRouter()
   const { id } = router.params
-  const [template, setTemplate] = useState<TemplateDetail | null>(null)
+  const [template, setTemplate] = useState(null)
   const [loading, setLoading] = useState(true)
   const [isPaid, setIsPaid] = useState(false) // TODO: 从订单系统获取
 
@@ -32,7 +32,7 @@ export default function TemplateDetail() {
   const loadTemplate = async () => {
     setLoading(true)
     try {
-      const data: any = await templateAPI.getDetail(Number(id))
+      const data = await templateAPI.getDetail(Number(id))
       setTemplate(data)
     } catch (error) {
       console.error('加载模板详情失败:', error)

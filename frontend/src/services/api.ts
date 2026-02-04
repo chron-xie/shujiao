@@ -2,13 +2,13 @@ import Taro from '@tarojs/taro'
 
 const BASE_URL = 'http://localhost:8000/api/v1'
 
-interface RequestOptions {
-  method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
-  data?: any
-  header?: any
-}
+// interface RequestOptions {
+//   method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
+//   data?: any
+//   header?: any
+// }
 
-export async function request<T>(url: string, options: RequestOptions = {}): Promise<T> {
+export async function request(url, options = {}) {
   const { method = 'GET', data, header = {} } = options
 
   try {
@@ -23,7 +23,7 @@ export async function request<T>(url: string, options: RequestOptions = {}): Pro
     })
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      return response.data as T
+      return response.data
     } else {
       throw new Error(`Request failed with status ${response.statusCode}`)
     }
@@ -35,26 +35,26 @@ export async function request<T>(url: string, options: RequestOptions = {}): Pro
 
 // 参数相关API
 export const parameterAPI = {
-  getList: (params?: { material_category?: string; search?: string }) =>
+  getList: (params) =>
     request('/parameters/', { data: params }),
 
-  getDetail: (id: number) => request(`/parameters/${id}`),
+  getDetail: (id) => request(`/parameters/${id}`),
 }
 
 // 模板相关API
 export const templateAPI = {
-  getList: (params?: { template_category?: string; is_free?: boolean }) =>
+  getList: (params) =>
     request('/templates/', { data: params }),
 
-  getDetail: (id: number) => request(`/templates/${id}`),
+  getDetail: (id) => request(`/templates/${id}`),
 
-  recordDownload: (id: number) =>
+  recordDownload: (id) =>
     request(`/templates/${id}/download`, { method: 'POST' }),
 }
 
 // 咨询相关API
 export const consultationAPI = {
-  create: (data: any) =>
+  create: ( data) =>
     request('/consultations/', { method: 'POST', data }),
 
   getMyList: () => request('/consultations/my'),
@@ -62,24 +62,24 @@ export const consultationAPI = {
 
 // 用户相关API
 export const userAPI = {
-  create: (data: any) => request('/users/', { method: 'POST', data }),
+  create: ( data) => request('/users/', { method: 'POST', data }),
 
   getMe: () => request('/users/me'),
 
-  updateMe: (data: any) => request('/users/me', { method: 'PUT', data }),
+  updateMe: ( data) => request('/users/me', { method: 'PUT', data }),
 
-  addFavorite: (favorite_type: string, favorite_id: number) =>
+  addFavorite: (favorite_type, favorite_id) =>
     request('/users/favorites', {
       method: 'POST',
       data: { favorite_type, favorite_id },
     }),
 
-  removeFavorite: (favorite_type: string, favorite_id: number) =>
+  removeFavorite: (favorite_type, favorite_id) =>
     request('/users/favorites', {
       method: 'DELETE',
       data: { favorite_type, favorite_id },
     }),
 
-  getFavorites: (favorite_type: string) =>
+  getFavorites: (favorite_type) =>
     request(`/users/favorites/${favorite_type}`),
 }

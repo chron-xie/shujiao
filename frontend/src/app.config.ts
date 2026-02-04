@@ -1,4 +1,4 @@
-export default defineAppConfig({
+export default {
   pages: [
     'pages/home/index',
     'pages/parameter/index',
@@ -46,4 +46,4 @@ export default defineAppConfig({
       }
     ]
   }
-})
+}

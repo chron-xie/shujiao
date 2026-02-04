@@ -4,22 +4,22 @@ import Taro, { useRouter } from '@tarojs/taro'
 import { parameterAPI, userAPI } from '../../../services/api'
 import './index.scss'
 
-interface ParameterDetail {
-  id: number
-  material_category: string
-  param_name: string
-  param_definition: string | null
-  test_standard: string | null
-  standard_unit: string | null
-  user_focus: string | null
-  marking_spec: string | null
-  remark: string | null
-}
+// interface ParameterDetail {
+//   id: number
+//   material_category: string
+//   param_name: string
+//   param_definition: string | null
+//   test_standard: string | null
+//   standard_unit: string | null
+//   user_focus: string | null
+//   marking_spec: string | null
+//   remark: string | null
+// }
 
 export default function ParameterDetail() {
   const router = useRouter()
   const { id } = router.params
-  const [parameter, setParameter] = useState<ParameterDetail | null>(null)
+  const [parameter, setParameter] = useState(null)
   const [isFavorited, setIsFavorited] = useState(false)
   const [loading, setLoading] = useState(true)
 
@@ -33,7 +33,7 @@ export default function ParameterDetail() {
   const loadParameter = async () => {
     setLoading(true)
     try {
-      const data: any = await parameterAPI.getDetail(Number(id))
+      const data = await parameterAPI.getDetail(Number(id))
       setParameter(data)
     } catch (error) {
       console.error('加载参数详情失败:', error)
@@ -45,7 +45,7 @@ export default function ParameterDetail() {
 
   const checkFavorite = async () => {
     try {
-      const data: any = await userAPI.getFavorites('parameter')
+      const data = await userAPI.getFavorites('parameter')
       setIsFavorited(data.favorite_ids.includes(Number(id)))
     } catch (error) {
       console.error('检查收藏状态失败:', error)

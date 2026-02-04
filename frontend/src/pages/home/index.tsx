@@ -1,13 +1,17 @@
-import { View, Text, ScrollView, Image } from '@tarojs/components'
+import { View, Text, ScrollView } from '@tarojs/components'
+import { useState } from 'react'
 import Taro from '@tarojs/taro'
+import Icon from '../../components/Icon'
 import './index.scss'
 
 export default function Home() {
-  const handleSearch = () => {
-    Taro.switchTab({ url: '/pages/parameter/index' })
-  }
+  // 默认选中"参数标准查询"
+  const [selectedCard, setSelectedCard] = useState('parameter')
 
-  const handleNavigation = (page: string) => {
+  function handleNavigation(page) {
+    // 更新选中状态
+    setSelectedCard(page)
+
     if (page === 'parameter') {
       Taro.switchTab({ url: '/pages/parameter/index' })
     } else if (page === 'template') {
@@ -17,80 +21,114 @@ export default function Home() {
     }
   }
 
-  const coreFeatures = [
-    { id: 'parameter', name: '参数标准查询', primary: true },
-    { id: 'template', name: '行业模板库', primary: false },
-    { id: 'sop', name: '实拍规范SOP', primary: false },
-    { id: 'consultation', name: '15分钟轻咨询', primary: false },
-  ]
+  function handleSearch() {
+    Taro.switchTab({ url: '/pages/parameter/index' })
+  }
 
-  const hotTools = [
-    { id: 1, name: '玻纤板核心参数速查' },
-    { id: 2, name: 'PI板参数对比' },
-    { id: 3, name: '详情页五步法框架' },
-    { id: 4, name: 'CTI/Tg标注规范' },
-  ]
-
-  const recentUpdates = [
-    { id: 1, date: '2026-02-01', content: '新增PEEK参数表模板' },
-    { id: 2, date: '2026-01-30', content: '更新玻纤板CTI参数标准' },
-    { id: 3, date: '2026-01-28', content: '新增PI板参数对比工具' },
+  const updates = [
+    { date: '2026-02-01', title: '新增 PEEK 参数表模板' },
+    { date: '2026-01-28', title: '更新 FR-4 标准参数库' },
+    { date: '2026-01-25', title: '优化参数对比工具' },
+    { date: '2026-01-20', title: '新增 PTFE 材料检测标准' }
   ]
 
   return (
-    <ScrollView scrollY className='home-page'>
-      {/* 顶部Banner */}
-      <View className='header-banner'>
-        <Text className='title'>绝缘材料参数工具</Text>
-        <View className='search-icon' onClick={handleSearch}>
-          <Text className='icon'>🔍</Text>
+    <ScrollView scrollY className="home-page">
+      {/* 头部 */}
+      <View className="home-header">
+        <Text className="home-title">绝缘材料参数工具</Text>
+        <View className="home-search-icon" onClick={handleSearch}>
+          <Icon type="search" size={32} color="#666666" />
         </View>
       </View>
 
-      {/* 核心功能区 */}
-      <View className='core-features'>
-        {coreFeatures.map((feature) => (
-          <View
-            key={feature.id}
-            className={`feature-btn ${feature.primary ? 'primary' : ''}`}
-            onClick={() => handleNavigation(feature.id)}
-          >
-            <Text className='feature-text'>{feature.name}</Text>
+      {/* 四大功能卡片 */}
+      <View className="function-grid">
+        <View
+          className={`function-card ${selectedCard === 'parameter' ? 'selected-card' : 'unselected-card'} card-hover`}
+          onClick={() => handleNavigation('parameter')}
+        >
+          <View className="card-icon">
+            <Icon type="book" size={64} color={selectedCard === 'parameter' ? '#FFFFFF' : '#666666'} />
           </View>
-        ))}
+          <Text className="card-title">参数标准查询</Text>
+        </View>
+
+        <View
+          className={`function-card ${selectedCard === 'template' ? 'selected-card' : 'unselected-card'} card-hover`}
+          onClick={() => handleNavigation('template')}
+        >
+          <View className="card-icon">
+            <Icon type="folder" size={64} color={selectedCard === 'template' ? '#FFFFFF' : '#666666'} />
+          </View>
+          <Text className="card-title">行业模板库</Text>
+        </View>
+
+        <View
+          className={`function-card ${selectedCard === 'sop' ? 'selected-card' : 'unselected-card'} card-hover`}
+          onClick={() => handleNavigation('sop')}
+        >
+          <View className="card-icon">
+            <Icon type="camera" size={64} color={selectedCard === 'sop' ? '#FFFFFF' : '#666666'} />
+          </View>
+          <Text className="card-title">实拍规范 SOP</Text>
+        </View>
+
+        <View
+          className={`function-card ${selectedCard === 'consultation' ? 'selected-card' : 'unselected-card'} card-hover`}
+          onClick={() => handleNavigation('consultation')}
+        >
+          <View className="card-icon">
+            <Icon type="chat" size={64} color={selectedCard === 'consultation' ? '#FFFFFF' : '#666666'} />
+          </View>
+          <Text className="card-title">15分钟轻咨询</Text>
+        </View>
       </View>
 
-      {/* 热门工具推荐区 */}
-      <View className='hot-tools'>
-        <Text className='section-title'>热门工具</Text>
-        <ScrollView scrollX className='tool-list'>
-          {hotTools.map((tool) => (
-            <View key={tool.id} className='tool-card'>
-              <Text className='tool-name'>{tool.name}</Text>
+      {/* 热门工具推荐 */}
+      <View className="section">
+        <Text className="section-title">热门工具推荐</Text>
+        <ScrollView scrollX className="tool-list">
+          <View className="tool-card card card-hover">
+            <View className="tool-icon">
+              <Icon type="document" size={40} color="#1A5F7A" />
             </View>
-          ))}
+            <Text className="tool-name">玻纤板核心参数速查</Text>
+          </View>
+
+          <View className="tool-card card card-hover">
+            <View className="tool-icon">
+              <Icon type="scale" size={40} color="#1A5F7A" />
+            </View>
+            <Text className="tool-name">PI板参数对比</Text>
+          </View>
+
+          <View className="tool-card card card-hover">
+            <View className="tool-icon">
+              <Icon type="list" size={40} color="#1A5F7A" />
+            </View>
+            <Text className="tool-name">详情页五</Text>
+          </View>
         </ScrollView>
       </View>
 
-      {/* 最近更新区 */}
-      <View className='recent-updates'>
-        <Text className='section-title'>最近更新</Text>
-        <View className='update-list'>
-          {recentUpdates.map((update) => (
-            <View key={update.id} className='update-item'>
-              <Text className='update-date'>{update.date}</Text>
-              <Text className='update-content'>{update.content}</Text>
+      {/* 最近更新 */}
+      <View className="section">
+        <Text className="section-title">最近更新</Text>
+        <View className="updates-list">
+          {updates.map((item, index) => (
+            <View key={index} className="update-item card card-hover">
+              <Text className="update-date">{item.date}</Text>
+              <Text className="update-title">{item.title}</Text>
             </View>
           ))}
         </View>
       </View>
 
-      {/* 底部说明栏 */}
-      <View className='footer-note'>
-        <Text className='note-text'>数据仅供参考，实际以国标/厂商检测报告为准</Text>
-        <Text className='contact-btn' onClick={() => handleNavigation('consultation')}>
-          联系咨询
-        </Text>
+      {/* 底部联系 */}
+      <View className="footer">
+        <Text className="footer-note">数据仅供参考，实际以国标/厂商检测报告为准</Text>
+        <Text className="footer-link" onClick={() => handleNavigation('consultation')}>联系咨询</Text>
       </View>
     </ScrollView>
   )

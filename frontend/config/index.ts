@@ -16,7 +16,9 @@ export default {
   plugins: ['@tarojs/plugin-html'],
   defineConstants: {},
   copy: {
-    patterns: [],
+    patterns: [
+      { from: 'src/assets', to: 'dist/assets' }
+    ],
     options: {}
   },
   framework: 'react',
