@@ -160,7 +160,7 @@
   left: 0;
   right: 0;
   padding: 12px 16px;
-  background-color: #fff;
+  background-color: #2E5E77;
   border-top: 1px solid #e5e5e5;
   z-index: 100;
 
@@ -176,7 +176,7 @@
     transition: opacity 0.2s;
 
     &.active {
-      background-color: var(--highlight);
+      background-color:  #2E5E77;
       color: #fff;
       cursor: pointer;
 
@@ -186,7 +186,7 @@
     }
 
     &.disabled {
-      background-color: #f5f5f5;
+      background-color: #2E5E77;
       color: var(--disabled);
       cursor: not-allowed;
     }

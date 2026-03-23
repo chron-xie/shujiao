@@ -7,6 +7,10 @@
 - Python 3.12
 - Conda 环境管理
 - MySQL 数据库
+    - DATABASE_HOST=47.116.114.44
+    - DATABASE_USER=root
+    - DATABASE_PASSWORD=A123456z
+    - DATABASE_NAME=shujiao
 
 ## 快速开始
 
@@ -54,3 +58,5 @@ backend/
 ├── tests/               # 测试文件
 └── scripts/             # 脚本工具
 ```
+
+

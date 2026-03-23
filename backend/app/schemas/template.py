@@ -1,53 +1,52 @@
 from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
-from decimal import Decimal
-from app.models.template import TemplateCategory
 
 
-class TemplateBase(BaseModel):
-    template_category: TemplateCategory
-    template_name: str
-    description: Optional[str] = None
-    cover_image_url: Optional[str] = None
-    price: Decimal = Decimal("0.00")
-    is_free: bool = False
-    download_url: Optional[str] = None
-    sort_order: int = 0
-
-
-class TemplateCreate(TemplateBase):
-    pass
-
-
-class TemplateUpdate(BaseModel):
-    template_category: Optional[TemplateCategory] = None
-    template_name: Optional[str] = None
-    description: Optional[str] = None
-    cover_image_url: Optional[str] = None
-    price: Optional[Decimal] = None
-    is_free: Optional[bool] = None
-    download_url: Optional[str] = None
-    sort_order: Optional[int] = None
-
-
-class TemplateInDB(TemplateBase):
+class TemplateListItem(BaseModel):
+    """模板列表项响应"""
     id: int
-    download_count: int
+    template_category: str
+    template_name: str
+    cover_image_url: Optional[str] = None
+    description: Optional[str] = None
+    price: float = 0.00
+    is_free: bool = True
+    download_count: int = 0
+    view_count: int = 0
+
+    class Config:
+        from_attributes = True
+
+
+class TemplateResponse(BaseModel):
+    """模板详情响应"""
+    id: int
+    template_category: str
+    template_name: str
+    cover_image_url: Optional[str] = None
+    description: Optional[str] = None
+    price: float = 0.00
+    is_free: bool = True
+    download_count: int = 0
+    purchase_count: int = 0
+    view_count: int = 0
     created_at: datetime
-    updated_at: datetime
+    can_download: bool = False
 
     class Config:
         from_attributes = True
 
 
-class TemplateListResponse(BaseModel):
-    id: int
-    template_category: TemplateCategory
+class TemplateDownloadResponse(BaseModel):
+    """模板下载响应"""
+    download_url: str
     template_name: str
-    cover_image_url: Optional[str]
-    price: Decimal
-    is_free: bool
+    download_id: int
 
-    class Config:
-        from_attributes = True
+
+class TemplateCategoryResponse(BaseModel):
+    """模板分类响应"""
+    value: str
+    label: str
+    count: int
