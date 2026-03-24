@@ -57,3 +57,6 @@ backend/.venv/
 
 # Git worktrees
 .worktrees/
+
+# Brainstorm artifacts
+.superpowers/
