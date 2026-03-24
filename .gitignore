@@ -26,6 +26,7 @@ frontend/dist/
 frontend/.temp/
 frontend/.rn_temp/
 frontend/.taro_cache/
+frontend/.swc/
 frontend/package-lock.json
 frontend/yarn.lock
 
@@ -57,3 +58,6 @@ backend/.venv/
 
 # Git worktrees
 .worktrees/
+
+# Brainstorm artifacts
+.superpowers/

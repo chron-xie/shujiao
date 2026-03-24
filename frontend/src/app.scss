@@ -1,72 +1,52 @@
 /* 绝缘材料参数工具 - 全局样式 */
 
 page {
-  background-color: #F5F7FA;
-  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  color: #333333;
+  background-color: #eef3f6;
+  color: #1c2731;
   font-size: 28rpx;
   line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* 专业工业配色系统 - 极简工业风 */
 :root {
-  /* 主色系 - 深蓝色 */
-  --primary: #1A5F7A;
-  --primary-light: #2A7A9A;
-  --primary-dark: #0E4A5F;
-
-  /* 强调色 - 橙色 */
-  --accent: #FF7D00;
-  --accent-light: #FF9933;
-  --accent-dark: #E66F00;
-
-  /* 中性色系 */
-  --bg-primary: #F5F7FA;
-  --bg-card: #FFFFFF;
-  --bg-hover: #EEF0F3;
-
-  /* 文字色系 */
-  --text-primary: #333333;
-  --text-secondary: #666666;
-  --text-tertiary: #999999;
-  --text-placeholder: #CCCCCC;
-
-  /* 功能色 */
-  --success: #52C41A;
-  --warning: #FAAD14;
-  --error: #F5222D;
-  --info: #1890FF;
-
-  /* 边框和分割线 */
-  --border-color: #E8E8E8;
-  --divider-color: #F0F0F0;
-
-  /* 阴影 - 极简工业风：无阴影 */
+  --primary: #1f4d66;
+  --primary-light: #4f7489;
+  --primary-dark: #16384c;
+  --accent: #f28a2e;
+  --accent-light: #f7a454;
+  --accent-dark: #d46f12;
+  --bg-primary: #eef3f6;
+  --bg-card: #ffffff;
+  --bg-hover: #e7edf1;
+  --surface-strong: #f7fafc;
+  --text-primary: #1c2731;
+  --text-secondary: #5f6b76;
+  --text-tertiary: #8a97a3;
+  --text-placeholder: #9aa6b2;
+  --success: #2d8c57;
+  --warning: #c97a18;
+  --error: #c84b31;
+  --info: #2f6b88;
+  --border-color: #d7e0e6;
+  --divider-color: #d7e0e6;
   --shadow-sm: none;
   --shadow-md: none;
   --shadow-lg: none;
   --shadow-card: none;
-
-  /* 间距系统 - 统一间距 12px, 16px, 24px */
-  --spacing-xs: 12rpx;
+  --spacing-xs: 8rpx;
   --spacing-sm: 16rpx;
   --spacing-md: 24rpx;
   --spacing-lg: 32rpx;
-  --spacing-xl: 48rpx;
-
-  /* 圆角 - 统一 4px */
-  --radius-sm: 8rpx;
-  --radius-md: 8rpx;
-  --radius-lg: 8rpx;
-  --radius-xl: 8rpx;
-
-  /* 动画 */
+  --spacing-xl: 40rpx;
+  --radius-sm: 12rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 20rpx;
+  --radius-xl: 24rpx;
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 220ms cubic-bezier(0.2, 0, 0, 1);
 }
 
-/* 通用卡片样式 - 极简工业风 */
 .card {
   background: var(--bg-card);
   border-radius: var(--radius-md);
@@ -80,7 +60,6 @@ page {
   background: var(--bg-hover);
 }
 
-/* 通用按钮样式 */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -91,12 +70,11 @@ page {
   font-weight: 500;
   transition: all var(--transition-fast);
   border: none;
-  cursor: pointer;
 }
 
 .btn-primary {
   background: var(--primary);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .btn-primary:active {
@@ -105,7 +83,7 @@ page {
 
 .btn-accent {
   background: var(--accent);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .btn-accent:active {
@@ -122,7 +100,6 @@ page {
   background: var(--bg-hover);
 }
 
-/* 标签页样式 */
 .tabs {
   display: flex;
   background: var(--bg-card);
@@ -156,7 +133,6 @@ page {
   border-radius: 2rpx;
 }
 
-/* 列表项样式 */
 .list-item {
   display: flex;
   align-items: center;
@@ -176,7 +152,6 @@ page {
   font-size: 24rpx;
 }
 
-/* 表单样式 */
 .form-item {
   margin-bottom: var(--spacing-md);
 }
@@ -221,10 +196,8 @@ page {
 
 .form-textarea {
   min-height: 200rpx;
-  resize: vertical;
 }
 
-/* 徽章样式 */
 .badge {
   display: inline-block;
   padding: 4rpx 12rpx;
@@ -234,28 +207,26 @@ page {
 }
 
 .badge-primary {
-  background: rgba(44, 95, 122, 0.1);
+  background: rgba(31, 77, 102, 0.1);
   color: var(--primary);
 }
 
 .badge-accent {
-  background: rgba(255, 125, 0, 0.1);
+  background: rgba(242, 138, 46, 0.12);
   color: var(--accent);
 }
 
 .badge-success {
-  background: rgba(82, 196, 26, 0.1);
+  background: rgba(45, 140, 87, 0.1);
   color: var(--success);
 }
 
-/* 分割线 */
 .divider {
   height: 1rpx;
   background: var(--divider-color);
   margin: var(--spacing-lg) 0;
 }
 
-/* 空状态 */
 .empty-state {
   padding: 120rpx 32rpx;
   text-align: center;
