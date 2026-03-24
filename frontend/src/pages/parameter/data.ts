@@ -4,15 +4,7 @@ export const MATERIAL_CATEGORIES = [
   { value: '特种塑胶通用', label: '特种塑胶通用' },
 ]
 
-export type ParameterItem = {
-  id: number
-  param_name: string
-  value: string
-  unit: string
-  is_highlight: boolean
-}
-
-export const SAMPLE_DATA: Record<string, ParameterItem[]> = {
+export const SAMPLE_DATA = {
   '玻纤板(FR-4/G11)': [
     { id: 1, param_name: 'CTI值', value: '≥600', unit: 'V', is_highlight: true },
     { id: 2, param_name: '玻璃化转变温度Tg', value: '130-180', unit: '°C', is_highlight: true },
@@ -36,11 +28,11 @@ export const SAMPLE_DATA: Record<string, ParameterItem[]> = {
   ],
 }
 
-export function getCategoryIndex(value: string) {
+export function getCategoryIndex(value) {
   return MATERIAL_CATEGORIES.findIndex(category => category.value === value)
 }
 
-export function getFilteredParameters(categoryIndex: number, searchText: string) {
+export function getFilteredParameters(categoryIndex, searchText) {
   const category = MATERIAL_CATEGORIES[categoryIndex] || MATERIAL_CATEGORIES[0]
   const source = SAMPLE_DATA[category.value] || []
   const normalizedQuery = searchText.trim().toLowerCase()

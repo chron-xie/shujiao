@@ -3,29 +3,15 @@ export const TEMPLATE_CATEGORIES = [
   { value: '店铺架构模板', label: '店铺架构模板' },
   { value: '实拍SOP模板', label: '实拍 SOP 模板' },
   { value: 'FAQ话术模板', label: 'FAQ 话术模板' },
-] as const
-
-export type TemplateCategory = (typeof TEMPLATE_CATEGORIES)[number]['value']
+]
 
 export const FILTER_OPTIONS = [
   { value: 'all', label: '全部' },
   { value: 'free', label: '免费' },
   { value: 'paid', label: '付费' },
-] as const
+]
 
-export type FilterType = (typeof FILTER_OPTIONS)[number]['value']
-
-export type TemplateItem = {
-  id: number
-  template_name: string
-  template_category: TemplateCategory
-  cover_image_url: string
-  description: string
-  price: number
-  is_free: boolean
-}
-
-export const SAMPLE_TEMPLATES: Record<TemplateCategory, TemplateItem[]> = {
+export const SAMPLE_TEMPLATES = {
   '参数表模板': [
     {
       id: 1,

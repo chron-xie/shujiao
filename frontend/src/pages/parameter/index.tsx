@@ -24,11 +24,11 @@ export default function Parameter() {
 
   const parameters = getFilteredParameters(activeTab, searchText)
 
-  function handleSearch(e: { detail: { value: string } }) {
+  function handleSearch(e) {
     setSearchText(e.detail.value)
   }
 
-  function handleParameterClick(id: number) {
+  function handleParameterClick(id) {
     Taro.navigateTo({ url: `/pages/parameter/detail/index?id=${id}` })
   }
 

@@ -2,12 +2,12 @@ import { useMemo, useState } from 'react'
 import { View, Text, ScrollView, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import Icon from '../../components/Icon'
-import { FILTER_OPTIONS, SAMPLE_TEMPLATES, TEMPLATE_CATEGORIES, type FilterType, type TemplateItem } from './data'
+import { FILTER_OPTIONS, SAMPLE_TEMPLATES, TEMPLATE_CATEGORIES } from './data'
 import './index.scss'
 
 export default function Template() {
   const [activeTab, setActiveTab] = useState(0)
-  const [filterType, setFilterType] = useState<FilterType>('all')
+  const [filterType, setFilterType] = useState('all')
 
   const templates = useMemo(() => {
     const category = TEMPLATE_CATEGORIES[activeTab].value
@@ -22,7 +22,7 @@ export default function Template() {
     return currentTemplates
   }, [activeTab, filterType])
 
-  function handleTemplateClick(id: TemplateItem['id']) {
+  function handleTemplateClick(id) {
     Taro.navigateTo({ url: `/pages/template/detail/index?id=${id}` })
   }
 
